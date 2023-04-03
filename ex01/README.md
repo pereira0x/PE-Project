@@ -1,1 +1,1 @@
-![](../utils/images/1.png)
+![Enunciado](../utils/images/1.png)
