@@ -19,7 +19,11 @@ data_ddesemp_avg <- mean(data_ddesemp)
 data_ddesemp_sd <- sd(data_ddesemp)
 new_ddesemp <- (data_ddesemp - data_ddesemp_avg)/data_ddesemp_sd
 
-data_ndesemp_avg <- mean(data_ndesemp)
+data_ndesemp_avg <- mean(data_ndesemp)    
+typeof(data_ndesemp_avg)
+typeof(data_ndesemp)
+
+
 data_ndesemp_sd <- sd(data_ndesemp)
 new_ndesemp <- (data_ndesemp - data_ndesemp_avg)/data_ndesemp_sd
 
