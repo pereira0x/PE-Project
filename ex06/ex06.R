@@ -1,10 +1,24 @@
+#Constants
+FIRST_DIGIT_1 = 2
+FIRST_DIGIT_2 = 9
+MIN = 9       #The exponent of the small number
+MAX = 27      #The exponent of the biggest number 
+
+#Calculate the Benford probability
 benford_prob <- function(d) log10(1 + 1 / d)
-p_2_or_9 <- benford_prob(2) + benford_prob(9)
 
-powers_of_two <- seq(2^9, 2^27, by = 2^10)
-first_digit <- as.numeric(substr(powers_of_two, 1, 1))
-matching_numbers <- powers_of_two[first_digit == 2 | first_digit == 9]
-fraction <- length(matching_numbers) / length(powers_of_two)
+#Using the Benford approximation
+prob_benford <- benford_prob(FIRST_DIGIT_1) + benford_prob(FIRST_DIGIT_2)
 
-deviation <- abs(p_2_or_9 - fraction)
+#Using real values
+powers_of_two <- 2^(seq(MIN, MAX))
+first_digits <- as.numeric(substr(powers_of_two, 1, 1))   #the first digit of the powers of 2
+
+favorable_cases <- length(powers_of_two[first_digits == FIRST_DIGIT_1 | first_digits == FIRST_DIGIT_2])
+possible_cases <- length(powers_of_two)
+prob_real <- favorable_cases / possible_cases
+
+#Compare both results
+deviation <- abs(prob_benford - prob_real)
 round(deviation, 4)
+
