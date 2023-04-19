@@ -23,7 +23,6 @@ data_processing <- function(col) {
   return(new_col)
 }
 
-
 # Read data from the Excel file
 data <- read_excel(FILE_NAME)
 data_year <- subset(data, as.Date(tempo, "%d-%m-%Y") >= as.Date(INICIAL_YEAR, "%d-%m-%Y"))
