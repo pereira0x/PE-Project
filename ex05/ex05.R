@@ -1,4 +1,4 @@
-# load packages
+ # load packages
 pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
                plotly, rio, rmarkdown, shiny, stringr, tidyr, plyr)
 
@@ -36,16 +36,24 @@ inv_transform = function(u){
 
 # generate a sample from uniform distribution
 u <- runif(n)
-
+head(u)
 # find the x values for each
 x <- sapply(u, inv_transform)
-
+x
 mean <- mean(x)
 mean
 std <- sd(x)
-
+std
 x_above_mean <- x[x > mean]
 x_above_mean
-prop <- mean(x_above_mean > mean + std)
+x_above_mean_std <- x[x > mean + std]
+x_above_mean_std
 
+
+len_x_above_mean <- length(x_above_mean)
+len_x_above_mean_std <- length(x_above_mean_std)
+
+prop <- len_x_above_mean_std / len_x_above_mean
+prop
 round(prop, 4)
+
