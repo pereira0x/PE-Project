@@ -1,9 +1,10 @@
 # load packages
+
 pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
                plotly, rio, rmarkdown, shiny, stringr, tidyr)
 
 # read csv file
-time_use <- import("~/Documents/IST/PE/PE-Project/ex02/TIME_USE_24092022.csv")
+time_use <- import("~/lixo/PE-Project/ex02/TIME_USE_24092022.csv")
 
 head(time_use)
 
@@ -39,4 +40,18 @@ boxplot(paid_work_study[2],
         col = "red")
                                
 
+# Combine data into a single data frame
+data <- data.frame(
+  group = c(rep("Outros", nrow(other)), rep("Trabalho Remunerado ou Estudo", nrow(paid_work_study))),
+  value = c(other[,2], paid_work_study[,2])
+)
+
+# Create a boxplot with ggplot2
+ggplot(data, aes(x=group, y=value, fill=group)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("green", "red")) +
+  labs(title = "Tempo de Atividades Diárias",
+       subtitle = "Tempo médio diário em horas (Homens)") +
+  xlab("") +
+  ylab("Tempo médio diário (horas)")
 # Need to clean the loads !!!
