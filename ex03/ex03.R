@@ -16,3 +16,4 @@ ggplot(data_EMP5, aes(x=Age.Group, y=Value, fill=Sex)) +
   ggtitle("Share of employed in part-time employment by sex and age group\n Norway (2015)") +
   labs(x="Age Group", y="Share of employed in part-time employment", fill="Sex") +
   theme_minimal()
+
