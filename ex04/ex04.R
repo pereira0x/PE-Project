@@ -30,3 +30,5 @@ desvio_absoluto <- abs(media_obs - valor_esperado)
 round(desvio_absoluto, 4)
 
 
+
+
