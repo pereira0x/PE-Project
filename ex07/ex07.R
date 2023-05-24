@@ -18,7 +18,6 @@ for (i in 1:m) {
   square_sums[i] <- sum(sample^2)
 }
 
-
 # quantile of probability of 35% of square_sums
 sample_quantile <- quantile(square_sums, p, type)
 sample_quantile

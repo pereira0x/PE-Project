@@ -1,3 +1,4 @@
+
 # load packages
 pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
                plotly, rio, rmarkdown, shiny, stringr, tidyr, plyr, rootSolve)
@@ -36,28 +37,24 @@ for (i in 1:length(n)) {
     
     # Método 1
     m1_function <- function(p) (x_bar^2 - (2 * p * x_bar) + (p^2) - ((z^2 * p * (1 - p)) / n[i]))
-    m1_roots <- uniroot.all(m1_function, interval = c(0, 1))
-    
-    m1_diff =  abs(m1_roots[2] - m1_roots[1])
-
+    m1_roots <- uniroot.all(m1_function, interval = c(0, 1))  
+    m1_len =  abs(m1_roots[2] - m1_roots[1])
+  
 
     # Método 2
-    m2_function <- function(p) ( x_bar - p / (sqrt( x_bar * (1 - x_bar) / n[i] )) )
-    m2_roots <- uniroot.all(m2_function, interval = c(0, 1))
-    m2_diff =  abs(m2_roots[2] - m2_roots[1])
+    m2_low_limit <- x_bar - (z * sqrt((x_bar * (1 - x_bar)) / n[i]))
+    m2_upper_limit <- x_bar + (z * sqrt((x_bar * (1 - x_bar)) / n[i])) 
+    m2_len <- abs(m2_upper_limit - m2_low_limit)
     
     # Diferença entre os comprimentos dos intervalos
-    diff_intervals[j] <- abs(m1_diff - m2_diff)
+    diff_intervals[j] <- abs(m1_len - m2_len)
   }
   
   # Média das diferenças
   mean_diff[i] <- mean(diff_intervals)
-  print(mean(diff_intervals))
 }
-mean_diff
 
 # Construir o gráfico
-plot(n, mean_diff, type = "b", pch = 19, xlab = "Tamanho da Amostra (n)", ylab = "Diferença Média",
+plot(n, mean_diff, col="red", type = "b", pch = 19, xlab = "Tamanho da Amostra (n)", ylab = "Diferença Média",
      main = "Diferença Média dos Intervalos de Confiança")
-
 

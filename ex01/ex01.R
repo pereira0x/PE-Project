@@ -1,35 +1,34 @@
 pacman::p_load(pacman, readxl, ggplot2, magrittr, ggthemes)
 
-setwd("./ex01")  # Set working directory
+setwd("./ex01")  
 getwd()
 
 
-# Constants
+# Constantes
 FILE_NAME <- "econ.xlsx"
-INICIAL_YEAR <- "01-01-1981"
+INICIAL_YEAR <- "01-01-1971"
 FIRST_COLUMN <- "ddesemp"
-SECOND_COLUMN <- "ndesemp"
-GRAPH_LABEL <- c("Semanas desempregado", "Número de desempregados") #Must be a vector with 2 elements
+SECOND_COLUMN <- "gcp"
+GRAPH_LABEL <- c("Semanas Desempregado", "Gastos de Consumo Pessoal") 
 GRAPH_TITLE <- "Desempregabilidade nos USA"
 
 
-# Function to process data
+# função para processar os dados
 data_processing <- function(col) {
   data_col <- data_year[[col]]
   data_col_avg <- mean(data_col)
   data_col_sd <- sd(data_col)
-  
   new_col <- (data_col - data_col_avg)/data_col_sd
   return(new_col)
 }
 
-# Read data from the Excel file
+# Recolha dos dados
 data <- read_excel(FILE_NAME)
 data_year <- subset(data, as.Date(tempo, "%d-%m-%Y") >= as.Date(INICIAL_YEAR, "%d-%m-%Y"))
 
 
-#Show results
-my_plot <- ggplot(data_year, aes(x=tempo)) + 
+# Construir o gráfico
+plot <- ggplot(data_year, aes(x=tempo)) + 
   
   geom_line(aes(y = data_processing(FIRST_COLUMN), colour="one"), linewidth=0.8)  +
   geom_line(aes(y = data_processing(SECOND_COLUMN),  colour="two"), linewidth=0.8) +
@@ -43,6 +42,11 @@ my_plot <- ggplot(data_year, aes(x=tempo)) +
   
   theme_fivethirtyeight() +
   theme(axis.title.x = element_text(), axis.title.y = element_text())
+
+
   
-my_plot
+plot
+
+
+
 

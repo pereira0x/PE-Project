@@ -1,8 +1,8 @@
 #Constants
-FIRST_DIGIT_1 = 2
+FIRST_DIGIT_1 = 1
 FIRST_DIGIT_2 = 9
-MIN = 9       #The exponent of the small number
-MAX = 27      #The exponent of the biggest number 
+MIN = 7       #The exponent of the small number
+MAX = 20      #The exponent of the biggest number 
 
 #Calculate the Benford probability
 benford_prob <- function(d) log10(1 + 1 / d)

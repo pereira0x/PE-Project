@@ -1,16 +1,17 @@
 # load packages
 pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
                plotly, rio, rmarkdown, shiny, stringr, tidyr, plyr)
+
 # Fixar a semente aleatória
-set.seed(225)
+set.seed(1372)
 
 # Definir parâmetros
-mu <- 34.4
-sigma <- 2
-n <- 43
-m <- 100
-alpha <- 0.06
-h0 <- 33.2
+mu <- 80.9
+sigma <- sqrt(4)
+n <- 49
+m <- 250
+alpha <- 0.05
+h0 <- 79.8
 
 # Gerar amostras aleatórias com distribuição normal
 amostras <- matrix(rnorm(n*m, mean = mu, sd = sigma), nrow = n)
