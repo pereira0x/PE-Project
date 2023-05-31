@@ -27,6 +27,12 @@ data <- read_excel(FILE_NAME)
 data_year <- subset(data, as.Date(tempo, "%d-%m-%Y") >= as.Date(INICIAL_YEAR, "%d-%m-%Y"))
 
 
+data <- data.frame(
+  group = c(rep("Lazer", nrow(other)), rep("Trabalho Remunerado ou Estudo", nrow(paid_work_study))),
+  value = c(other[,2], paid_work_study[,2])
+)
+
+
 # Construir o gráfico
 plot <- ggplot(data_year, aes(x=tempo)) + 
   
