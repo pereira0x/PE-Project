@@ -19,8 +19,12 @@ for (i in 1:k) {
 }
 
 media_obs <- mean(num_acontecimentos)
-valor_esperado <- 1 / lambda
+valor_esperado <-lambda
+valor_esperado
 
 desvio_absoluto <- abs(media_obs - valor_esperado)
 
 round(desvio_absoluto, 4)
+
+
+
