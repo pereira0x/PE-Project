@@ -1,4 +1,4 @@
-pacman::p_load(pacman, readxl, ggplot2, magrittr, ggthemes)
+pacman::p_load(pacman, ggplot2)
 
 #Setup environment
 set.seed(1526)
