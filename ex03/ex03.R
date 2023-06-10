@@ -1,6 +1,5 @@
 # load packages
-pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
-               plotly, rio, rmarkdown, shiny, stringr, tidyr)
+pacman::p_load(dplyr, ggplot2, ggthemes)
 
 # Recolha dos dados
 data <- read.delim("~/PE-Project/ex03/GENDER_EMP_19032023152556091.txt", header = TRUE, sep = "\t")
@@ -17,6 +16,8 @@ ggplot(data_EMP2, aes(x=Age.Group, y=Value, fill=Sex)) +
   ggtitle("Share of employed in part-time employment by sex and age group\n Japan (2020)") +
   labs(x="Age Group", y="Share of employed in part-time employment", fill="Sex") +
   theme_minimal()
+
+
 
 
 
