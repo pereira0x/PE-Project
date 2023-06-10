@@ -1,0 +1,46 @@
+---
+title: "Pergunta 2"
+geometry: margin=2cm
+fig_width: 3 
+fig_height: 3 
+output:
+  pdf_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.width=7, fig.height=3.5) 
+```
+
+
+
+
+```{r}
+pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
+               plotly, rio, rmarkdown, shiny, stringr, tidyr)
+
+time_use <- import("./TIME_USE_24092022.csv")
+
+time_use <- subset(time_use, País != "África do Sul")
+man_time_use <- subset(time_use, Sexo =="Homens")
+
+man1_time_use <- subset(man_time_use, Ocupação == "Outros")
+man2_time_use <- subset(man_time_use, Ocupação == "Trabalho remunerado ou estudo")
+
+rownames(man1_time_use) <- seq(length=nrow(man1_time_use))
+rownames(man2_time_use) <- seq(length=nrow(man2_time_use))
+
+other <- subset(man1_time_use, select = -c(Ocupação, Sexo))
+paid_work_study <- subset(man2_time_use, select = -c(Ocupação, Sexo))
+
+ggplot(data, aes(x=group, y=value, fill=group)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("green", "red")) +
+  labs(title = "Tempo de Atividades Diárias",
+       subtitle = "Tempo médio diário em horas (Homens)") +
+  xlab("") +
+  ylab("Tempo médio diário (horas)")
+```
+
+

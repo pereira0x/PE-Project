@@ -1,10 +1,9 @@
 # load packages
-
-pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, ggvis, httr, lubridate,
-               plotly, rio, rmarkdown, shiny, stringr, tidyr)
+pacman::p_load(rio, ggplot2, dplyr, ggthemes)
 
 # read csv file
-time_use <- import("~/lixo/PE-Project/ex02/TIME_USE_24092022.csv")
+setwd("./ex02")
+time_use <- import("./TIME_USE_24092022.csv")
 
 head(time_use)
 
@@ -27,13 +26,24 @@ View(man1_time_use)
 other <- subset(man1_time_use, select = -c(Ocupação, Sexo))
 paid_work_study <- subset(man2_time_use, select = -c(Ocupação, Sexo))
 
-# Constoi o gráfico
+data <- data.frame(
+  group = c(rep("Lazer", nrow(other)), rep("Trabalho Remunerado ou Estudo", nrow(paid_work_study))),
+  value = c(other[,2], paid_work_study[,2])
+)
+
 ggplot(data, aes(x=group, y=value, fill=group)) +
   geom_boxplot() +
-  scale_fill_manual(values = c("green", "red")) +
+  scale_fill_manual(values = c("#f44747", "#5cadeb")) +
+  geom_jitter(color="#716c6c", size=1.7, alpha=0.9) +
   labs(title = "Tempo de Atividades Diárias",
        subtitle = "Tempo médio diário em horas (Homens)") +
-  xlab("") +
-  ylab("Tempo médio diário (horas)")
+     labs(fill = "Grupos") +
+     theme(legend.position = "none") +
+     xlab("") +
+     ylab("Tempo médio diário (horas)")
+
+
+
+
 
 
