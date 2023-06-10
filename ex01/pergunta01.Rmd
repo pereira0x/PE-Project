@@ -14,7 +14,7 @@ knitr::opts_chunk$set(fig.width=7, fig.height=3.5)
 ```
 
 ```{r}
-pacman::p_load(pacman, readxl, ggplot2, magrittr, ggthemes)
+pacman::p_load(readxl, ggplot2, magrittr, ggthemes)
 
 FILE_NAME <- "econ.xlsx"
 INICIAL_YEAR <- "01-01-1971"

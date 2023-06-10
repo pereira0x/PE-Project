@@ -27,11 +27,11 @@ other <- subset(man1_time_use, select = -c(Ocupação, Sexo))
 paid_work_study <- subset(man2_time_use, select = -c(Ocupação, Sexo))
 
 data <- data.frame(
-  group = c(rep("Lazer", nrow(other)), rep("Trabalho Remunerado ou Estudo", nrow(paid_work_study))),
+  group = c(rep("Outros", nrow(other)), rep("Trabalho Remunerado ou Estudo", nrow(paid_work_study))),
   value = c(other[,2], paid_work_study[,2])
 )
 
-ggplot(data, aes(x=group, y=value, fill=group)) +
+ggplot(data, aes(x=value, y=group, fill=group)) +
   geom_boxplot() +
   scale_fill_manual(values = c("#f44747", "#5cadeb")) +
   geom_jitter(color="#716c6c", size=1.7, alpha=0.9) +
@@ -39,8 +39,8 @@ ggplot(data, aes(x=group, y=value, fill=group)) +
        subtitle = "Tempo médio diário em horas (Homens)") +
      labs(fill = "Grupos") +
      theme(legend.position = "none") +
-     xlab("") +
-     ylab("Tempo médio diário (horas)")
+     xlab("Tempo médio diário (horas)") +
+     ylab("")
 
 
 
