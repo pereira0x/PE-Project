@@ -1,0 +1,55 @@
+---
+title:  |
+        | \vspace{-2cm} Pergunta 1
+geometry: margin=2cm
+figure: |
+        | \vspace{-1cm}
+fig_width: 3 
+fig_height: 3 
+output:
+  pdf_document: default
+  fig_crop: no
+  bookdown::pdf_document2:
+    keep_tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.width=6, fig.height=3.5) 
+```
+
+```{r, fig.align='center',out.height = "2.9in"}
+pacman::p_load(dplyr, ggplot2, plyr, rootSolve)
+set.seed(1595)
+
+n <- c(30, 50, 100, 200, 300, 500, 1000)
+prob <- 0.8
+k <- 3000
+gamma <- 0.9
+z <- qnorm((1 + gamma)/2)  
+mean_diff <- numeric(length(n))
+for (i in 1:length(n)) {
+  diff_intervals <- numeric(k)
+  for (j in 1:k) {
+    sample <- rbinom(n[i], 1, prob)
+    x_bar <- mean(sample)
+    
+    # Método 1
+    m1_function <- function(p) (x_bar^2 - (2 * p * x_bar) + (p^2) - ((z^2 * p * (1 - p)) / n[i]))
+    m1_roots <- uniroot.all(m1_function, interval = c(0, 1))  
+    m1_len =  abs(m1_roots[2] - m1_roots[1])
+    # Método 2
+    m2_low_limit <- x_bar - (z * sqrt((x_bar * (1 - x_bar)) / n[i]))
+    m2_upper_limit <- x_bar + (z * sqrt((x_bar * (1 - x_bar)) / n[i])) 
+    m2_len <- abs(m2_upper_limit - m2_low_limit)
+    
+    diff_intervals[j] <- abs(m1_len - m2_len)
+  }
+  mean_diff[i] <- mean(diff_intervals)
+}
+plot(n, mean_diff, col="red", type = "b", pch = 19, xlab = "Tamanho da Amostra (n)", 
+     ylab = "Diferença Média", main = "Diferença Média dos Intervalos de Confiança")
+
+```
+Como a diferença entre os valores do método 1 e método 2 é muito pequena, aproximando-se de 0 quando n tende para infiníto. Então conclui-se, que para estimar o parametro p de uma distribuição de bernoulli, podemos recorrer a aproximação  $\hat p = \overline X$ (no denomidador da varríavel fulcral), uma vez que o erro de usar tal aproximação é insignificante.
+

@@ -1,4 +1,3 @@
-
 # load packages
 pacman::p_load(dplyr, ggplot2, plyr, rootSolve)
 
@@ -56,5 +55,4 @@ for (i in 1:length(n)) {
 # Construir o gráfico
 plot(n, mean_diff, col="red", type = "b", pch = 19, xlab = "Tamanho da Amostra (n)", ylab = "Diferença Média",
      main = "Diferença Média dos Intervalos de Confiança")
-
 

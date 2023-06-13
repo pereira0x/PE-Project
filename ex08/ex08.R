@@ -45,3 +45,6 @@ ggplot() +
   theme(plot.title = element_text(size = 18, face = "bold"),
         legend.title = element_text(size = 10, face = "bold"))
 
+
+
+
