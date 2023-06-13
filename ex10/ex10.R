@@ -23,8 +23,8 @@ resultados <- rep(NA, m)
 # Realizar o teste de hipóteses para cada amostra
 for (i in 1:m) {
   amostra <- amostras[, i]
-  t_obs <- (mean(amostra) - h0) / (sd(amostra)/sqrt(n))
-  if (abs(t_obs) > qt(1 - alpha/2, df = n-1)) {
+  t_obs <- (mean(amostra) - h0) / (sigma/sqrt(n))
+  if (abs(t_obs) > qnorm(1 - alpha/2)) {
     resultados[i] <- "Rejeitar H0"
   } else {
     resultados[i] <- "Não rejeitar H0"
@@ -36,8 +36,3 @@ resultados
 proporcao <- sum(resultados == "Não rejeitar H0")/m
 # Propabilidade de nao rejeitar H0
 round(proporcao, 3)
-
-
-
-
-
