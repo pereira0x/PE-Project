@@ -1,0 +1,46 @@
+---
+title:  |
+        | \vspace{-3cm} Pergunta 8
+geometry: margin=2cm
+fig_width: 7
+fig_height: 6 
+output:
+  pdf_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.width=6, fig.height=4.7, fig.align='center') 
+```
+
+```{r}
+pacman::p_load(pacman, readxl, ggplot2, magrittr, ggthemes)
+
+set.seed(1526)
+
+prob <- 1:177 / (177 + 1)
+quantiles_cauchy <- qcauchy(prob, location = 1.4, scale = 1.2)
+quantiles_normal <- qnorm(prob, mean = 1.2, sd = sqrt(3.4))
+sample_cauchy <- sort(rcauchy(177, scale = 1.2, location = 1.4 ))
+data_cauchy <- data.frame(sample_cauchy, quantiles_cauchy)
+data_normal <- data.frame(sample_cauchy, quantiles_normal)
+
+cols <- c("samples", "quantiles")
+colnames(data_cauchy) <- cols
+colnames(data_normal) <- cols
+ggplot() +
+  geom_point(data = data_cauchy, aes(x = quantiles, y = samples, color = "Cauchy"), 
+             size = 1) +
+  geom_point(data = data_normal, aes(x = quantiles, y = samples, color = "Normal"),
+             size = 1) +
+  geom_abline(intercept = 0, slope = 1, color = "#f93f3f") +
+  ggtitle("\nGráfico de Probabilidade de Cauchy") +
+  xlab("Valores gerados ordenados") + ylab("Quantis de probabilidade") +
+  scale_color_manual(values = c("#23b1ee", "#000000", "#f93f3f"),
+                     labels = c("Cauchy", "Normal", "Bissectriz")) +
+  labs(color = "Legenda:") + theme_minimal() +
+  theme(plot.title = element_text(size = 10, face = "bold"),
+        legend.title = element_text(size = 10, face = "bold"))
+```
+
