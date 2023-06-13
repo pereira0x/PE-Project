@@ -11,7 +11,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-knitr::opts_chunk$set(fig.width=6, fig.height=4.7, fig.align='center') 
+knitr::opts_chunk$set(fig.width=6, fig.height=4.6, fig.align='center') 
 ```
 
 ```{r}
@@ -35,8 +35,8 @@ ggplot() +
   geom_point(data = data_normal, aes(x = quantiles, y = samples, color = "Normal"),
              size = 1) +
   geom_abline(intercept = 0, slope = 1, color = "#f93f3f") +
-  ggtitle("\nGráfico de Probabilidade de Cauchy") +
-  xlab("Valores gerados ordenados") + ylab("Quantis de probabilidade") +
+  ggtitle("Quantis de Probabilidade vs Amostra Cauchy") +
+  xlab("Quantis de Probabilidade") + ylab("Valores gerados ordenados") +
   scale_color_manual(values = c("#23b1ee", "#000000", "#f93f3f"),
                      labels = c("Cauchy", "Normal", "Bissectriz")) +
   labs(color = "Legenda:") + theme_minimal() +

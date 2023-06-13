@@ -1,6 +1,6 @@
 ---
 title:  |
-        | \vspace{-2cm} Pergunta 1
+        | \vspace{-2cm} Pergunta 9
 geometry: margin=2cm
 figure: |
         | \vspace{-1cm}
@@ -51,5 +51,5 @@ plot(n, mean_diff, col="red", type = "b", pch = 19, xlab = "Tamanho da Amostra (
      ylab = "Diferença Média", main = "Diferença Média dos Intervalos de Confiança")
 
 ```
-Como a diferença entre os valores do método 1 e método 2 é muito pequena, aproximando-se de 0 quando n tende para infiníto. Então conclui-se, que para estimar o parametro p de uma distribuição de bernoulli, podemos recorrer a aproximação  $\hat p = \overline X$ (no denomidador da varríavel fulcral), uma vez que o erro de usar tal aproximação é insignificante.
+Como a diferença entre os valores do método 1 e método 2 é muito pequena, aproximando-se de 0 quando n tende para infiníto. Então conclui-se, que para estimar o parâmetro p de uma Distribuição de Bernoulli, podemos recorrer a aproximação  $\hat p = \overline X$ (no denomidador da varríavel fulcral), uma vez que o erro de usar tal aproximação é insignificante.
 

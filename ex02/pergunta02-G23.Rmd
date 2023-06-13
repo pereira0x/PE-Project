@@ -11,7 +11,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-knitr::opts_chunk$set(fig.width=7, fig.height=3.5) 
+knitr::opts_chunk$set(fig.width=7, fig.height=3.5, fig.align='center') 
 ```
 
 
@@ -43,10 +43,10 @@ ggplot(data, aes(x=value, y=group, fill=group)) +
   scale_fill_manual(values = c("#f44747", "#5cadeb")) +
   geom_jitter(color="#716c6c", size=1.7, alpha=0.9) +
   labs(title = "Tempo de Atividades Diárias",
-       subtitle = "Tempo médio diário em horas (Homens)") +
+       subtitle = "Tempo médio diário em minutos (Homens)") +
      labs(fill = "Grupos") +
      theme(legend.position = "none") +
-     xlab("Tempo médio diário (horas)") +
+     xlab("Tempo médio diário (minutos)") +
      ylab("")
 
 ```

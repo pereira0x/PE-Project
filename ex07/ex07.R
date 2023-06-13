@@ -8,7 +8,6 @@ set.seed(1385)
 m <- 1029
 n <- 12
 p <- 0.35
-type <- 2
 
 # vector to store the square sums
 square_sums <- rep(0, m) 
@@ -19,7 +18,7 @@ for (i in 1:m) {
 }
 
 # quantile of probability of 35% of square_sums
-sample_quantile <- quantile(square_sums, p, type)
+sample_quantile <- quantile(square_sums, p, type=2)
 sample_quantile
 
 # theoretical quantile of square_sums of independent 

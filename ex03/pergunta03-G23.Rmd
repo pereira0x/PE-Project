@@ -20,11 +20,16 @@ data_EMP2 <- subset(data, IND == "EMP2" & Country == "Japan" & Time == 2020 &
                       (Age.Group == "15-24" | Age.Group == "25-54" | Age.Group == "55-64") & 
                       (Sex == "Men" | Sex == "Women"))
 
+data_EMP2 <- data_EMP2 %>%
+  mutate(Sex = ifelse(Sex == "Men", "Homem", "Mulher"))
+
 ggplot(data_EMP2, aes(x=Age.Group, y=Value, fill=Sex)) + 
   geom_bar(stat="identity", position="dodge") +
-  ggtitle("Employment/population ratio, by sex and age group\n Japan (2020)") +
-  labs(x="Age Group", y="Share of employed in part-time employment", fill="Sex") +
+  ggtitle("Empregabilidade/População, por sexo e faixa etária\n Japão (2020)") +
+  labs(x="Faixa Etária", y="Empregabilidade(%)", fill="Sexo") +
   theme_minimal()
+
+   
 
 ```
 

@@ -49,3 +49,4 @@ len_x_above_mean_std <- length(x_above_mean_std)
 prop <- len_x_above_mean_std / len_x_above_mean
 round(prop, 4)
 
+

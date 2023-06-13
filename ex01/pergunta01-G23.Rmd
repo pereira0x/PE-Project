@@ -20,7 +20,7 @@ FILE_NAME <- "econ.xlsx"
 INICIAL_YEAR <- "01-01-1971"
 FIRST_COLUMN <- "ddesemp"
 SECOND_COLUMN <- "gcp"
-GRAPH_LABEL <- c("Semanas Desempregado", "Gastos de Consumo Pessoal") 
+GRAPH_LABEL <- c("Duração Mediana de Desemprego", "Gastos de Consumo Pessoal") 
 GRAPH_TITLE <- "Desempregabilidade nos USA"
 
 data_processing <- function(col) {
@@ -42,7 +42,7 @@ ggplot(data_year, aes(x=tempo)) +
     labels = GRAPH_LABEL,
     values = c("#da4747", "#27b5ee")
   ) +
-  labs(x = "Anos", y = "Valor (%)", title = GRAPH_TITLE) +
+  labs(x = "Anos", y = "", title = GRAPH_TITLE) +
   theme_fivethirtyeight() +
   theme(axis.title.x = element_text(), axis.title.y = element_text())
 
